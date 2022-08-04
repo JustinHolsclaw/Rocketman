@@ -1,9 +1,6 @@
 #Simulation of a rocket launch just for fun
 import time
 
-from click import launch
-
-
 def Launch_Countdown(length_of_countdown):
     while(length_of_countdown != 0):
         print (length_of_countdown)
@@ -21,15 +18,10 @@ def Assemble_Rocket(propulsionForce=0,mass=0,fuel=0,depletionRate=0):
     return current_Configuration
 
 def calculateDistance(rocket,initialVelocity=0,time=0):
-    vi=initialVelocity*(fuelConsumption(rocket)/rocket["depletionRate"])
     a=calculateAcceleration(rocket)
-    if time == 0:
-        t= calculateTime(rocket)
-        t2 = t*t
-        return vi+(1/2*a*t2)
-    else:
-        t2 = time*time
-        return vi+(1/2*a*t2)
+    vi=initialVelocity*time  
+    t2 = time*time
+    return vi+(1/2*a*t2)
 
 def calculateForce(rocket):
     return rocket["force"]-9.8
@@ -62,18 +54,19 @@ def sumDistance(rocket):
         rocket["fuel"]=calculateFuel(rocket)
     return sum
 
-def EditSpaceCraft():
-    pass
+def EditSpaceCraft(rocket):
+
+    return rocket
 
 
 def Launch():
-    rocket = Assemble_Rocket(10.8,20,10,1)
+    rocket = Assemble_Rocket(109.8,20,100,1)
     Launch_Countdown(2)
-    print(calculateDistance(rocket))
+    print(calculateDistance(rocket,0,100))
     print(sumDistance(rocket))
 
 def Main_Menu():
-    choice = input("launch or edit spacecraft")
+    choice = input("launch or edit spacecraft:\n")
     if choice == 'launch':
         Launch()
     elif choice == 'edit spacecraft':
