@@ -17,6 +17,14 @@ def Assemble_Rocket(propulsionForce=0,mass=0,fuel=0,depletionRate=0):
     }
     return current_Configuration
 
+def Calculate_Current_Mass():
+    current_rocket = Assemble_Rocket()
+    current_mass = current_rocket.get("Propulsion_System")
+
+
+def Calculate_Profit():
+    pass
+
 def calculateDistance(rocket,initialVelocity=0,time=0):
     a=calculateAcceleration(rocket)
     vi=initialVelocity*time  
@@ -72,7 +80,6 @@ def Main_Menu():
     elif choice == 'edit spacecraft':
         EditSpaceCraft()
     ##elif choice ==
-
 
 if __name__== '__main__':
     Main_Menu()
